@@ -10,6 +10,7 @@ mkdir -p nvim fish alacritty tmux claude codex hermes
 "${RS[@]}" "$H/.config/nvim/"      nvim/
 "${RS[@]}" "$H/.config/fish/"      fish/
 "${RS[@]}" "$H/.config/alacritty/" alacritty/
+mkdir -p starship; cp "$H/.config/starship.toml" starship/
 cp "$H/.tmux.conf" tmux/tmux.conf
 mkdir -p tmux/scripts tmux/prompts
 cp -R "$H/.tmux/scripts/." tmux/scripts/

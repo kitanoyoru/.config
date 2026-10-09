@@ -1,0 +1,40 @@
+# Quiet one-liner: directory, branch, dirty marker, chevron
+add_newline = false
+command_timeout = 500
+scan_timeout = 30
+format = "$directory$git_branch$git_status$git_state$character"
+
+[directory]
+style = "cyan"
+truncation_length = 3
+truncate_to_repo = true
+format = "[$path]($style)[$read_only]($read_only_style) "
+read_only = " ro"
+
+[git_branch]
+style = "purple"
+format = "[$branch]($style) "
+truncation_length = 28
+truncation_symbol = "…"
+
+[git_status]
+style = "yellow"
+format = '([\[$all_status$ahead_behind\]]($style) )'
+conflicted = "=${count}"
+ahead = "⇡${count}"
+behind = "⇣${count}"
+diverged = "⇕"
+modified = "!${count}"
+staged = "+${count}"
+untracked = "?${count}"
+stashed = "$"
+deleted = "✘${count}"
+
+[git_state]
+format = '[\($state $progress_current/$progress_total\)]($style) '
+style = "red"
+
+[character]
+success_symbol = "[❯](yellow)"
+error_symbol = "[❯](red)"
+vimcmd_symbol = "[❮](green)"
