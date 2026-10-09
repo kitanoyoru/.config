@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+# usage: agent-ask   (run inside display-popup)
+# quick one-off question: pick agent, type question, chat in popup.
+# No git worktree, no new window — popup closes when you exit the agent.
+set -euo pipefail
+agent=$(printf '%s\n' claude codex hermes agent | fzf --prompt 'agent> ' --height 100%) || exit 0
+read -rp "ask> " q
+[ -z "$q" ] && exit 0
+case "$agent" in
+  hermes) exec hermes chat -q "$q" ;;
+  *)      exec "$agent" "$q" ;;
+esac
