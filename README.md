@@ -9,6 +9,7 @@ Personal dotfiles. Live configs are mirrored here; run `./sync.sh` to refresh fr
 | Neovim | [`nvim/`](nvim) | `~/.config/nvim` | [`init.lua`](nvim/init.lua), [`lua/`](nvim/lua), [`lsp/`](nvim/lsp), [`lazy-lock.json`](nvim/lazy-lock.json) |
 | Fish | [`fish/`](fish) | `~/.config/fish` | [`config.fish`](fish/config.fish), [`fish_plugins`](fish/fish_plugins), [`conf.d/`](fish/conf.d), [`functions/`](fish/functions), [`completions/`](fish/completions) |
 | Alacritty | [`alacritty/`](alacritty) | `~/.config/alacritty` | [`alacritty.toml`](alacritty/alacritty.toml) |
+| Ghostty | [`ghostty/`](ghostty) | `~/.config/ghostty` | [`config`](ghostty/config) |
 | tmux | [`tmux/`](tmux) | `~/.tmux.conf` | [`tmux.conf`](tmux/tmux.conf) |
 | Claude Code | [`claude/`](claude) | `~/.claude` | [`CLAUDE.md`](claude/CLAUDE.md), [`settings.json`](claude/settings.json), [`rules/`](claude/rules), [`hooks/`](claude/hooks) |
 | Codex | [`codex/`](codex) | `~/.codex` | [`AGENTS.md`](codex/AGENTS.md), [`config.toml`](codex/config.toml), [`rules/`](codex/rules) |

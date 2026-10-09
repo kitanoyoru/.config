@@ -5,11 +5,12 @@ cd "$(dirname "$0")"
 H="$HOME"
 RS=(rsync -a --delete --exclude .DS_Store)
 
-mkdir -p nvim fish alacritty tmux claude codex hermes
+mkdir -p nvim fish alacritty ghostty tmux claude codex hermes
 
 "${RS[@]}" "$H/.config/nvim/"      nvim/
 "${RS[@]}" "$H/.config/fish/"      fish/
 "${RS[@]}" "$H/.config/alacritty/" alacritty/
+mkdir -p ghostty; cp "$H/.config/ghostty/config" ghostty/
 mkdir -p starship; cp "$H/.config/starship.toml" starship/
 cp "$H/.tmux.conf" tmux/tmux.conf
 mkdir -p tmux/scripts tmux/prompts

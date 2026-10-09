@@ -1,0 +1,87 @@
+# Ghostty config — ported from ~/.config/alacritty/alacritty.toml
+# Reload in place with cmd+shift+, (Ghostty's equivalent of live_config_reload)
+
+# ── Font ───────────────────────────────────────────────────────────────
+font-family = FiraCode Nerd Font
+font-style = Light
+font-style-bold = Medium
+font-style-italic = Light Italic
+font-size = 12
+
+# alacritty [font.offset] x = 1 / y = 1 → extra px per cell
+adjust-cell-width = 1
+adjust-cell-height = 1
+
+# ── Cursor ─────────────────────────────────────────────────────────────
+cursor-style = block
+# unfocused_hollow has no equivalent — Ghostty always hollows the unfocused cursor
+
+# ── Window ─────────────────────────────────────────────────────────────
+window-width = 130
+window-height = 50
+window-padding-x = 6
+window-padding-y = 6
+window-decoration = true
+background-opacity = 1
+fullscreen = false
+window-save-state = never
+
+# ── Shell ──────────────────────────────────────────────────────────────
+# open straight into the shared tmux session (same as alacritty)
+command = /opt/homebrew/bin/tmux new-session -A -s main
+
+# ── Mouse & selection ──────────────────────────────────────────────────
+mouse-hide-while-typing = true
+copy-on-select = false
+# semantic_escape_chars has no equivalent — Ghostty's word boundaries are fixed
+
+# ── Scrollback ─────────────────────────────────────────────────────────
+# alacritty had history = 0 (tmux held the scrollback). Ghostty's limit is in
+# bytes; ~10 MB per surface. Set to 0 to restore the old no-scrollback behavior.
+scrollback-limit = 10000000
+
+# ── macOS ──────────────────────────────────────────────────────────────
+macos-option-as-alt = true
+
+# ── Colors (alacritty 0.12 default / tomorrow night) ───────────────────
+background = 1d1f21
+foreground = c5c8c6
+palette = 0=#1d1f21
+palette = 1=#cc6666
+palette = 2=#b5bd68
+palette = 3=#f0c674
+palette = 4=#81a2be
+palette = 5=#b294bb
+palette = 6=#8abeb7
+palette = 7=#c5c8c6
+palette = 8=#666666
+palette = 9=#d54e53
+palette = 10=#b9ca4a
+palette = 11=#e7c547
+palette = 12=#7aa6da
+palette = 13=#c397d8
+palette = 14=#70c0b1
+palette = 15=#eaeaea
+
+# ── Keybinds ───────────────────────────────────────────────────────────
+# cmd+c / cmd+v / cmd+q are Ghostty defaults and need no binding.
+# Alt+arrows / Alt+Backspace (word motions)
+keybind = alt+left=text:\x1b[1;3D
+keybind = alt+right=text:\x1b[1;3C
+keybind = alt+up=text:\x1b[1;3A
+keybind = alt+down=text:\x1b[1;3B
+keybind = alt+backspace=text:\x1b\x7f
+
+# Cmd shortcuts -> tmux (prefix is C-s = \x13)
+keybind = super+w=text:\x13&
+keybind = super+t=text:\x13c
+keybind = super+shift+bracket_right=text:\x13n
+keybind = super+shift+bracket_left=text:\x13p
+keybind = super+bracket_right=text:\x13o
+keybind = super+bracket_left=text:\x13;
+keybind = super+f=text:\x13/
+
+keybind = super+enter=toggle_fullscreen
+keybind = super+equal=increase_font_size:1
+keybind = super+minus=decrease_font_size:1
+keybind = super+shift+minus=reset_font_size
