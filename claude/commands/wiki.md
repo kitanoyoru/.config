@@ -1,0 +1,1 @@
+/Users/kitanoyoru/.claude/plugins/cache/agricidaniel-claude-obsidian/claude-obsidian/1.9.2/commands/wiki.md

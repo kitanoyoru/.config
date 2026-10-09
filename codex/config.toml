@@ -1,0 +1,209 @@
+notify = ["/Users/kitanoyoru/.codex/computer-use/Codex Computer Use.app/Contents/SharedSupport/SkyComputerUseClient.app/Contents/MacOS/SkyComputerUseClient", "turn-ended"]
+model = "glm-5.3-flash:cloud"
+model_reasoning_effort = "low"
+approvals_reviewer = "user"
+approval_policy = "never"
+sandbox_mode = "danger-full-access"
+service_tier = "default"
+
+model_catalog_json = "/Users/kitanoyoru/.codex/ollama-launch-models.json"
+
+openai_base_url = "http://127.0.0.1:11434/api/codex/v1"
+
+[marketplaces.openai-bundled]
+source_type = "local"
+source = "/Users/kitanoyoru/.codex/.tmp/bundled-marketplaces/openai-bundled"
+
+[marketplaces.openai-primary-runtime]
+source_type = "local"
+source = "/Users/kitanoyoru/.cache/codex-runtimes/codex-primary-runtime/plugins/openai-primary-runtime"
+
+[marketplaces.claude-mem-local]
+last_updated = "2026-07-15T10:37:32Z"
+source_type = "local"
+source = "/Users/kitanoyoru/.claude/plugins/marketplaces/thedotmack"
+
+[plugins."documents@openai-primary-runtime"]
+enabled = true
+
+[plugins."pdf@openai-primary-runtime"]
+enabled = true
+
+[plugins."spreadsheets@openai-primary-runtime"]
+enabled = true
+
+[plugins."presentations@openai-primary-runtime"]
+enabled = true
+
+[plugins."google-calendar@openai-curated"]
+enabled = true
+
+[plugins."slack@openai-curated"]
+enabled = true
+
+[plugins."chrome@openai-bundled"]
+enabled = true
+
+[plugins."computer-use@openai-bundled"]
+enabled = true
+
+[plugins."template-creator@openai-primary-runtime"]
+enabled = true
+
+[plugins."visualize@openai-bundled"]
+enabled = true
+
+[features]
+hooks = true
+js_repl = false
+
+[mcp_servers.node_repl]
+args = []
+command = "/Applications/ChatGPT.app/Contents/Resources/cua_node/bin/node_repl"
+startup_timeout_sec = 120
+
+[mcp_servers.node_repl.env]
+NODE_REPL_NATIVE_PIPE_CONNECT_TIMEOUT_MS = "1000"
+NODE_REPL_NODE_MODULE_DIRS = "/Applications/ChatGPT.app/Contents/Resources/cua_node/lib/node_modules"
+NODE_REPL_NODE_PATH = "/Applications/ChatGPT.app/Contents/Resources/cua_node/bin/node"
+NODE_REPL_TRUSTED_CODE_PATHS = "/Users/kitanoyoru/.codex:/Applications/ChatGPT.app/Contents/Resources/cua_node/lib/node_modules"
+CODEX_HOME = "/Users/kitanoyoru/.codex"
+BROWSER_USE_AVAILABLE_BACKENDS = "chrome,iab"
+BROWSER_USE_TINYSKY_ENABLED = "1"
+NODE_REPL_INSTRUCTIONS_USE_CASE_BROWSER = ""
+NODE_REPL_INSTRUCTIONS_USE_CASE_CHROME = ""
+NODE_REPL_INSTRUCTIONS_USE_CASE_COMPUTER_USE = ""
+BROWSER_USE_CODEX_APP_BUILD_FLAVOR = "prod"
+BROWSER_USE_CODEX_APP_VERSION = "26.911.61220"
+NODE_REPL_TRUSTED_SERVICES = '{"browser":"/Users/kitanoyoru/.codex/plugins/cache/openai-bundled/browser/26.911.61220/scripts/browser-service.mjs","sky":"@oai/sky/service"}'
+SKY_CUA_SERVICE_PATH = "/Users/kitanoyoru/.codex/computer-use/Codex Computer Use.app"
+CODEX_CLI_PATH = "/Applications/ChatGPT.app/Contents/Resources/codex"
+
+[mcp_servers.context7]
+type = "http"
+url = "https://mcp.context7.com/mcp"
+
+[mcp_servers.context7.http_headers]
+Authorization = "Bearer REDACTED"
+
+[mcp_servers.gitnexus]
+command = "/Users/kitanoyoru/.local/share/fnm/node-versions/v25.4.0/installation/bin/gitnexus"
+args = ["mcp"]
+
+[mcp_servers.gitnexus.tools.rename]
+approval_mode = "approve"
+
+[mcp_servers.computer-use]
+command = "./Codex Computer Use.app/Contents/SharedSupport/SkyComputerUseClient.app/Contents/MacOS/SkyComputerUseClient"
+args = ["mcp"]
+cwd = "."
+enabled = false
+
+[projects."/Users/kitanoyoru/dev/kreader"]
+trust_level = "trusted"
+
+[projects."/Users/kitanoyoru/Documents/Codex/2026-07-14/create-a-scheduled-task-called-weekday"]
+trust_level = "trusted"
+
+[projects."/Users/kitanoyoru/Documents/Codex/2026-07-14/chrome-plugin-chrome-openai-bundled-file"]
+trust_level = "trusted"
+
+[projects."/Users/kitanoyoru/Documents/Codex/2026-07-15/mkdir-p-codex-agents-cp-categories"]
+trust_level = "trusted"
+
+[projects."/Users/kitanoyoru/Documents/Codex/2026-07-15/how-to-make-codex-run-every"]
+trust_level = "trusted"
+
+[projects."/Users/kitanoyoru/dev/kssh"]
+trust_level = "trusted"
+
+[projects."/Users/kitanoyoru/Documents/Codex/2026-07-26/new-chat"]
+trust_level = "trusted"
+
+[projects."/Users/kitanoyoru/Documents/Codex/2026-07-29/hi-alexandr-i-d-like-to"]
+trust_level = "trusted"
+
+[projects."/Users/kitanoyoru/Documents/Codex/2026-07-29/eth"]
+trust_level = "trusted"
+
+[projects."/Users/kitanoyoru/Documents/Codex/2026-07-29/sol"]
+trust_level = "trusted"
+
+[projects."/Users/kitanoyoru/Documents/Codex/2026-07-30/gola"]
+trust_level = "trusted"
+
+[projects."/private/tmp/WhiteSur-firefox-theme"]
+trust_level = "trusted"
+
+[projects."/private/tmp/WhiteSurFirefoxThemeMacOS"]
+trust_level = "trusted"
+
+[projects."/Users/kitanoyoru/Documents/Codex/2026-08-01/vj"]
+trust_level = "trusted"
+
+[projects."/Users/kitanoyoru/Documents/Go"]
+trust_level = "trusted"
+
+[projects."/Users/kitanoyoru/Documents/Codex/2026-09-17/sol"]
+trust_level = "trusted"
+
+[projects."/Users/kitanoyoru/Documents/Codex/2026-09-24/why-start-screen-saver-is-disabled"]
+trust_level = "trusted"
+
+[projects."/Users/kitanoyoru/Documents/Codex/2026-09-24/why-start-screen-saver-is-disabled-2"]
+trust_level = "trusted"
+
+[desktop]
+dock-icon-preference = "app-default"
+conversationDetailMode = "STEPS_PROSE"
+ambient-suggestions-enabled = true
+followUpQueueMode = "queue"
+show-context-window-usage = true
+
+enabled-reasoning-efforts = ["none","minimal","low","medium","high","xhigh","max","ultra"]
+[tui.model_availability_nux]
+"gpt-5.6-sol" = 4
+
+[apps.connector_76869538009648d5b282a4bb21c3d157.tools."github.create_pull_request"]
+approval_mode = "approve"
+
+[apps.asdk_app_69c18c28f1188191bf5b8445c4ab0a2e.tools."notion.notion-update-page"]
+approval_mode = "approve"
+
+[hooks.state]
+
+[hooks.state."claude-mem@claude-mem-local:hooks/codex-hooks.json:pre_tool_use:0:0"]
+trusted_hash = "sha256:86febee762af4f8108e7881061dcfb56c83e0dce5895fb0de92401357b847d6f"
+
+[hooks.state."claude-mem@claude-mem-local:hooks/codex-hooks.json:post_tool_use:0:0"]
+trusted_hash = "sha256:3a42cc9271ee65328dde3a9afe2199416194644c8467687107d621e0b84dd0ce"
+
+[hooks.state."claude-mem@claude-mem-local:hooks/codex-hooks.json:session_start:0:0"]
+trusted_hash = "sha256:e87c134f96569d4c873334f90aa4e05ca7cd97c33d7f1039f21e834ea55d88f4"
+
+[hooks.state."claude-mem@claude-mem-local:hooks/codex-hooks.json:user_prompt_submit:0:0"]
+trusted_hash = "sha256:ec28069a1699801e83b6c227f730f4cd89616e8ef24e5b1ffdbc68066f89b735"
+
+[hooks.state."claude-mem@claude-mem-local:hooks/codex-hooks.json:stop:0:0"]
+trusted_hash = "sha256:bc8fcabc7e0a38d90e26757207c40907b8b6e967256e6eb74f8f49f9cc4c4bf1"
+
+[hooks.state."/Users/kitanoyoru/dev/kreader/.codex/hooks.json:pre_tool_use:0:0"]
+trusted_hash = "sha256:436c15d25ac2a48f14214e289ec1fe155ac5f0050582f34db548d1f070a84690"
+
+[shell_environment_policy.set]
+NODE_REPL_TRUSTED_BROWSER_CLIENT_SHA256S = "028a14b6eaa6d98dac2aae00764345ab9f244801ed8493d42b9af3be5575006e,f204d340535055781952b10ed396de20b842f00a19e430852f7e121ad1ce91f6"
+
+[plugins."claude-mem@thedotmack"]
+enabled = false
+
+[plugins."claude-mem@claude-mem-local"]
+enabled = true
+
+[plugins."browser@openai-bundled"]
+enabled = true
+
+[plugins."codex-app-tools@openai-bundled"]
+enabled = true
+
+[plugins."unified-computer-use@openai-bundled"]
+enabled = true
