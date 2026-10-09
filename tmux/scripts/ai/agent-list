@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# fzf popup of agent windows; enter jumps to it
+rows=$(tmux list-windows -a -F '#{session_name}:#{window_index}|#{@ai_state}|#{@ai_agent}|#{@ai_task}' | awk -F'|' '$3!=""')
+[ -z "$rows" ] && { echo "no agent windows"; sleep 1; exit 0; }
+sel=$(printf '%s\n' "$rows" | column -t -s'|' | fzf --prompt 'agent> ' \
+  --preview 'tmux capture-pane -p -t {1} | tail -40' --preview-window down:70%) || exit 0
+target=${sel%% *}
+tmux switch-client -t "${target%%:*}" \; select-window -t "$target"

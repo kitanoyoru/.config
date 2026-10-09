@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+# usage: agent-state running|idle|input   (called from agent hooks; needs $TMUX_PANE)
+state=${1:?state}
+[ -z "${TMUX_PANE:-}" ] && exit 0
+tmux set-option -w -t "$TMUX_PANE" @ai_state "$state" 2>/dev/null || exit 0
+info=$(tmux display-message -p -t "$TMUX_PANE" '#{@ai_agent}:#{@ai_task}')
+case "$state" in
+  idle)  msg="done: $info" ;;
+  input) msg="needs input: $info" ;;
+  *) exit 0 ;;
+esac
+tmux display-message -d 3000 "$msg"
+osascript -e "display notification \"$msg\" with title \"tmux ai\"" >/dev/null 2>&1 || true

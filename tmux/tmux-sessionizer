@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+# pick a project dir with fzf, create/switch to a tmux session for it
+selected=$( { fd --type d --max-depth 2 . "$HOME/dev" "$HOME/.config"; fd --type d --max-depth 1 . "$HOME"/dev/*-wt 2>/dev/null; } 2>/dev/null | fzf --prompt "project> ")
+[ -z "$selected" ] && exit 0
+selected=$( { fd --type d --max-depth 2 . "$HOME/dev" "$HOME/.config"; fd --type d --max-depth 1 . "$HOME"/dev/*-wt 2>/dev/null; } 2>/dev/null | fzf --prompt "project> ")
+name=$(basename "$selected" | tr . _)
+if ! tmux has-session -t="$name" 2>/dev/null; then
+  tmux new-session -ds "$name" -c "$selected"
+fi
+tmux switch-client -t "$name"

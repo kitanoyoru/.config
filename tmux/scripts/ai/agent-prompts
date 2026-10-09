@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# pick a prompt snippet, pick target agent window, paste it
+set -euo pipefail
+dir=$HOME/.tmux/prompts
+p=$(ls "$dir" | fzf --prompt 'prompt> ' --preview "cat $dir/{}") || exit 0
+target=$(tmux list-windows -a -F '#{session_name}:#{window_index}|#{@ai_state}|#{@ai_agent}:#{@ai_task}' | awk -F'|' '$3!=":"' | column -t -s'|' | fzf --prompt 'to> ') || exit 0
+target=${target%% *}
+tmux load-buffer "$dir/$p"
+tmux paste-buffer -t "$target"

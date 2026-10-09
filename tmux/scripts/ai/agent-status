@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+# status-right segment: counts of agent windows by state
+tmux list-windows -a -F '#{@ai_state}' 2>/dev/null | awk '
+  $1=="running"{r++} $1=="input"{i++} $1=="idle"{d++}
+  END{
+    out=""
+    if(r) out=out "● " r " "
+    if(i) out=out "◐ " i " "
+    if(d) out=out "✓ " d " "
+    printf "%s", out
+  }'

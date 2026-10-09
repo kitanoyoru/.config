@@ -11,6 +11,10 @@ mkdir -p nvim fish alacritty tmux claude codex hermes
 "${RS[@]}" "$H/.config/fish/"      fish/
 "${RS[@]}" "$H/.config/alacritty/" alacritty/
 cp "$H/.tmux.conf" tmux/tmux.conf
+mkdir -p tmux/scripts tmux/prompts
+cp -R "$H/.tmux/scripts/." tmux/scripts/
+cp -R "$H/.tmux/prompts/." tmux/prompts/
+cp "$H/.local/bin/tmux-sessionizer" tmux/
 
 # claude: user-owned config only (plugins, agents, skills, sessions, creds excluded)
 cp "$H/.claude/CLAUDE.md" "$H/.claude/settings.json" claude/

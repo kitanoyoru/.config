@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+# usage: agent-send <src_pane>   pick what to send, pick target agent pane, paste
+set -euo pipefail
+src=${1:?src pane}
+what=$(printf '%s\n' "pane: last 200 lines" "buffer: tmux paste buffer" "file: pick a file" | fzf --prompt 'send> ') || exit 0
+tmp=$(mktemp); trap 'rm -f "$tmp"' EXIT
+case "$what" in
+  pane*)   tmux capture-pane -p -J -S -200 -t "$src" > "$tmp" ;;
+  buffer*) tmux show-buffer > "$tmp" ;;
+  file*)   f=$(fd --type f . "$(tmux display-message -p -t "$src" '#{pane_current_path}')" | fzf) || exit 0
+           printf '@%s ' "$f" > "$tmp" ;;
+esac
+target=$(tmux list-windows -a -F '#{session_name}:#{window_index}|#{@ai_state}|#{@ai_agent}:#{@ai_task}' | awk -F'|' '$3!=":"' | column -t -s'|' | fzf --prompt 'to> ') || exit 0
+target=${target%% *}
+tmux load-buffer "$tmp"
+tmux paste-buffer -t "$target"

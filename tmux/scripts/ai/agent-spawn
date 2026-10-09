@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+# usage: agent-spawn <session> <dir>   (run inside display-popup)
+# pick agent + task, create git worktree, open tmux window running the agent
+set -euo pipefail
+session=${1:?session}; dir=${2:?dir}
+root=$(git -C "$dir" rev-parse --show-toplevel 2>/dev/null) || { echo "not a git repo: $dir"; sleep 2; exit 1; }
+agent=$(printf '%s\n' claude codex hermes agent | fzf --prompt 'agent> ' --height 100%) || exit 0
+read -rp "task name: " task
+[ -z "$task" ] && exit 0
+slug=$(printf '%s' "$task" | tr -cs 'A-Za-z0-9._-' '-' | sed 's/^-//;s/-$//')
+wt="$(dirname "$root")/$(basename "$root")-wt/$slug"
+if [ ! -d "$wt" ]; then
+  mkdir -p "$(dirname "$wt")"
+  git -C "$root" worktree add "$wt" -b "ai/$slug" >/dev/null
+fi
+win=$(tmux new-window -P -F '#{window_id}' -t "$session:" -n "$agent:$slug" -c "$wt")
+tmux set-option -w -t "$win" @ai_agent "$agent"
+tmux set-option -w -t "$win" @ai_task "$slug"
+tmux set-option -w -t "$win" @ai_state running
+tmux set-option -w -t "$win" @ai_root "$root"
+tmux send-keys -t "$win" "$agent" Enter

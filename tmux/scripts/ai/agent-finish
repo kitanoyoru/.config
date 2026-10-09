@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+# usage: agent-finish <window_id>   review/merge/PR/discard the worktree of an agent window
+set -euo pipefail
+win=${1:?window}
+task=$(tmux display-message -p -t "$win" '#{@ai_task}')
+root=$(tmux display-message -p -t "$win" '#{@ai_root}')
+wt=$(tmux display-message -p -t "$win" '#{pane_current_path}')
+[ -z "$task" ] || [ -z "$root" ] && { echo "not an agent window"; sleep 2; exit 1; }
+branch="ai/$task"
+act=$(printf '%s\n' "diff (lazygit)" "merge into current branch of main checkout" "open PR" "discard worktree + branch" | fzf --prompt "$branch> " \
+  --preview "git -C $wt diff --stat HEAD; git -C $wt log --oneline -5" ) || exit 0
+case "$act" in
+  diff*)    cd "$wt" && lazygit ;;
+  merge*)   git -C "$root" merge --no-ff "$branch" ;;
+  "open PR") git -C "$wt" push -u origin "$branch" && (cd "$wt" && gh pr create --fill) ;;
+  discard*) read -rp "delete $wt and $branch? type yes: " a
+            [ "$a" = yes ] || exit 0
+            tmux kill-window -t "$win"
+            git -C "$root" worktree remove --force "$wt"
+            git -C "$root" branch -D "$branch" ;;
+esac
+read -rp "enter to close" _
